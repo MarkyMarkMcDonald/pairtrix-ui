@@ -3,7 +3,7 @@ describe('Pairings', function () {
         it('groups alphabetically', function () {
             var pairings = new Pairings(['Mario', 'Luigi', 'Peach', 'Daisy']);
 
-            expect(pairings.possiblePairs()).toEqual([
+            expect(pairings.possiblePairs()).toBePairsOf([
                 ['Daisy', 'Luigi'], ['Daisy', 'Mario'], ['Daisy', 'Peach'],
                 ['Luigi', 'Mario'], ['Luigi', 'Peach'],
                 ['Mario', 'Peach']
@@ -18,7 +18,7 @@ describe('Pairings', function () {
             pairings.lockIn(['Mario', 'Peach']);
             pairings.lockIn(['Daisy', 'Luigi']);
 
-            expect(pairings.activePairs()).toEqual([['Daisy', 'Luigi'], ['Mario', 'Peach']]);
+            expect(pairings.activePairs()).toBePairsOf([['Daisy', 'Luigi'], ['Mario', 'Peach']]);
         });
 
         it('is not allowed for members already locked in', function () {
@@ -27,7 +27,7 @@ describe('Pairings', function () {
             pairings.lockIn(['Mario', 'Peach']);
             pairings.lockIn(['Mario', 'Luigi']);
 
-            expect(pairings.activePairs()).toEqual([['Mario', 'Peach']]);
+            expect(pairings.activePairs()).toBePairsOf([['Mario', 'Peach']]);
         });
     });
 });
