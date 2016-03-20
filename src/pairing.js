@@ -13,7 +13,15 @@ Pairings.prototype.possiblePairs = function () {
 };
 
 Pairings.prototype.lockIn = function (pair) {
-    this._activePairs.push(pair)
+    var conflict = _.some(this._activePairs, function (activePair) {
+        return _.intersection(activePair, pair).length > 0;
+    });
+
+    if (!conflict) {
+        this._activePairs.push(pair)
+    }
+
+    return conflict;
 };
 
 Pairings.prototype.activePairs = function () {
